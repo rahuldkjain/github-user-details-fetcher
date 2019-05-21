@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Git Avatar User Fetcher</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- Leave those next 4 lines if you care about users using IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="container">
+    <h1 class="jumbotron text-center">Github Avatar fetcher</h1>
+    <br>
+
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" placeholder="Enter username">
+    <button onclick="fetchAccount();" class="btn btn-success">Reveal me!</button>
+
+    <br>
+
+    <table class="table" id="userTable">
+            <thead>
+              <tr>
+                <th scope="col">UserName</th>
+                <th scope="col">Avatar</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                <!--
+                    <tr>
+                <td><h4 id="userName"></h4></td>
+                <td><img src="" id="avatar" width="100px" height="80px" alt=""></td>
+                <td><button class="btn btn-warning" id="deleteUser" onclick="deleteUser();" style="display: none;">Delete</button></td>
+              </tr>
+                -->
+              
+            </tbody>
+    </table>
+    
+    
+    <script>
+        window.onload = myFunction;
+
+        function myFunction(){
+            var len = localStorage.length;
+
+            var MyTable =  document.getElementById("userTable");
+            for(var i = 0; i< len; i++){
+                var NewRow = MyTable.insertRow(i+1);
+                var Newcell1 = NewRow.insertCell(0);  
+                var Newcell2 = NewRow.insertCell(1);
+                var Newcell3 = NewRow.insertCell(2);
+                
+                var key = localStorage.key(i);
+                key = '"' + key + '"';
+                
+                Newcell1.innerHTML = localStorage.key(i); 
+                Newcell2.innerHTML = "<img src='"+ localStorage.getItem(localStorage.key(i)) + "' width='100px' height='80px'/>";
+                Newcell3.innerHTML = "<button onclick='deleteUser(" + key + ")'> Delete </button>";
+            }
+            
+
+        }
+    </script>
+
+
+    <script src="script.js">
+        // Create our request constructor with all the parameters we need
+        
+    </script>
+    <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
